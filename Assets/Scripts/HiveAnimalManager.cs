@@ -9,18 +9,11 @@ public class HiveAnimalManager : MonoBehaviour
     public GameObject queenBody;
     public QueenState queenState;
     private Vector3 targetPosition;
-    private Tilemap grassTilemap;
+    public Tilemap grassTilemap;
 
     public int amountOfAnts;
     public static List<Ant> allAnts = new List<Ant>();
     
-    
-    
-    void ChooseNestPosition()
-    {
-        grassTilemap.SetTile(InputManager.mouseGridPosition, Resources.Load<Tile>("Sprites/TilemepPalettes/map_3"));
-        InputManager.rightMouseClick -= ChooseNestPosition;
-    }
     void GoToTargetPosition()
     {
         targetPosition = new Vector3(InputManager.mousePosition.x, InputManager.mousePosition.y, 0);
@@ -33,13 +26,12 @@ public class HiveAnimalManager : MonoBehaviour
     {
         //Instantiate the queen
         hiveQueen = new Queen(Instantiate(queenBody));
-        Debug.Log("should be instantiated");
         LayerManager.grassLayer.Add(hiveQueen.body);
         HiveManager.allAnts.Add(hiveQueen);
         grassTilemap = GetComponent<GenerateTerrain>().grassTileMap;
 
         InputManager.leftMouseClick += GoToTargetPosition;
-        InputManager.rightMouseClick += ChooseNestPosition;
+        InputManager.rightMouseClick += hiveQueen.ChooseNestPosition;
         
         //Instantiate the ants
         for (int i = 0; i < amountOfAnts; i++)
@@ -57,6 +49,9 @@ public class HiveAnimalManager : MonoBehaviour
         {
             hiveQueen.body.transform.position += (targetPosition - hiveQueen.body.transform.position).normalized * (2 * Time.deltaTime);
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            hiveQueen.hiveAnimalState = HiveAnimalStates.toNest;
+
     }
 }

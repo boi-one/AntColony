@@ -4,13 +4,13 @@ using UnityEngine;
 
 public interface HiveAnimalInterface
 {
-    //HiveAnimal owner
-    //{
-    //    get;
-    //    set;
-    //}
+    HiveAnimal owner
+    {
+        get;
+        set;
+    }
     
-    void Wander(HiveAnimal owner)
+    void Wander()
     {
         
         Vector3 targetPosition = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3));
@@ -26,5 +26,13 @@ public interface HiveAnimalInterface
     void FoundEnemy()
     {
         
+    }
+
+    void EnterNest()
+    {
+        if (owner.hiveAnimalState != HiveAnimalStates.toNest || (owner.body.transform.position - owner.nestLocation).magnitude > 0.1f) return;
+
+        LayerManager.grassLayer.Remove(owner.body);
+        LayerManager.groundLayer.Add(owner.body);
     }
 }

@@ -6,5 +6,6 @@ public enum HiveAnimalStates
 {
     wander,
     foundFood,
-    foundEnemy
+    foundEnemy,
+    toNest
 }
