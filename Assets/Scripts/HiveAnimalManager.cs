@@ -7,7 +7,6 @@ public class HiveAnimalManager : MonoBehaviour
 {
     private Queen hiveQueen;
     public GameObject queenBody;
-    public QueenState queenState;
     private Vector3 targetPosition;
     public Tilemap grassTilemap;
 
@@ -43,15 +42,11 @@ public class HiveAnimalManager : MonoBehaviour
     {
         foreach (Ant ant in allAnts)
         {
-            ant.Wander();
+            //ant.antState.foundFood();
         }
-        if (queenState == QueenState.lookingForNestingLocation && (hiveQueen.body.transform.position - targetPosition).magnitude > 0.1f)
-        {
-            hiveQueen.body.transform.position += (targetPosition - hiveQueen.body.transform.position).normalized * (2 * Time.deltaTime);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            hiveQueen.hiveAnimalState = HiveAnimalStates.toNest;
-
+        //if (queenState == QueenState.lookingForNestingLocation && (hiveQueen.body.transform.position - targetPosition).magnitude > 0.1f)
+        //{
+        //    hiveQueen.body.transform.position += (targetPosition - hiveQueen.body.transform.position).normalized * (2 * Time.deltaTime);
+        //}
     }
 }

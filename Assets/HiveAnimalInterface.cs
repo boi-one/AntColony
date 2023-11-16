@@ -30,7 +30,7 @@ public interface HiveAnimalInterface
 
     void EnterNest()
     {
-        if (owner.hiveAnimalState != HiveAnimalStates.toNest || (owner.body.transform.position - owner.nestLocation).magnitude > 0.1f) return;
+        //if (owner.hiveAnimalState != HiveAnimalStates.toNest || (owner.body.transform.position - owner.nestLocation).magnitude > 0.1f) return;
 
         LayerManager.grassLayer.Remove(owner.body);
         LayerManager.groundLayer.Add(owner.body);

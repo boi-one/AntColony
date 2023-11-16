@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarryFoodState : AntStateMachine
+public class CarryFoodState : IAntState
 {
-    public HiveAnimal owner
+    public IAntState ActiveState(HiveAnimal hiveAnimal)
     {
-        get;
-        set;
+        return hiveAnimal.wanderingState;
     }
     
     public void Wandering()

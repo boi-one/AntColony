@@ -5,8 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class Queen : Ant
 {
-    public QueenState queenState;
-
     public void ChooseNestPosition()
     {
         Tilemap tilemap = body.GetComponent<HiveAnimalManager>().grassTilemap;
